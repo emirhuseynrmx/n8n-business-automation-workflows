@@ -1,0 +1,25 @@
+{
+  "category": "small-business-automation",
+  "templates": [
+    {
+      "file": "workflows/lead_form_to_sheets.json",
+      "use_case": "Capture leads and append them to Google Sheets",
+      "requires": ["Google Sheets credentials"]
+    },
+    {
+      "file": "workflows/email_to_ai_summary.json",
+      "use_case": "Summarize inbound emails for a business owner",
+      "requires": ["IMAP credentials", "OpenAI API key", "SMTP credentials"]
+    },
+    {
+      "file": "workflows/telegram_alert_router.json",
+      "use_case": "Send business alerts to Telegram",
+      "requires": ["Telegram bot credentials"]
+    },
+    {
+      "file": "workflows/daily_sales_digest.json",
+      "use_case": "Send daily sales digest from Google Sheets",
+      "requires": ["Google Sheets credentials", "Telegram bot credentials"]
+    }
+  ]
+}

@@ -15,6 +15,8 @@ Built for simple, practical workflows: forms, emails, sheets, alerts, AI summari
 | `telegram_alert_router.json` | Route business alerts to Telegram |
 | `daily_sales_digest.json` | Read rows from Sheets and send a daily summary |
 
+`workflow_catalog.json` describes each template, its use case, and required credentials.
+
 ## How To Use
 
 1. Import a workflow JSON file into n8n.
@@ -32,6 +34,8 @@ This repo includes tests that verify every workflow JSON file has:
 - nodes
 - connections
 - pinned metadata notes for customization
+- Pydantic schema-valid workflow structure
+- catalog entries that point to real workflow files
 
 ```bash
 pip install -e ".[dev]"
