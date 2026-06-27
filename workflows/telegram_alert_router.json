@@ -1,0 +1,37 @@
+{
+  "name": "Telegram Alert Router",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "path": "business-alert",
+        "httpMethod": "POST"
+      },
+      "id": "alert_webhook",
+      "name": "Alert Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 260]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$env.TELEGRAM_CHAT_ID}}",
+        "text": "={{'Alert: ' + $json.title + '\\n' + $json.message}}"
+      },
+      "id": "send_telegram_alert",
+      "name": "Send Telegram Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [540, 260]
+    }
+  ],
+  "connections": {
+    "Alert Webhook": {
+      "main": [[{"node": "Send Telegram Alert", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateNote": "Connect a Telegram bot credential and set TELEGRAM_CHAT_ID."
+  }
+}

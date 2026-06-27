@@ -1,0 +1,66 @@
+{
+  "name": "Email to AI Summary",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "mailbox": "INBOX",
+        "postProcessAction": "nothing"
+      },
+      "id": "email_trigger",
+      "name": "Email Trigger",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [200, 280]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/responses",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {"name": "Authorization", "value": "Bearer {{$env.OPENAI_API_KEY}}"},
+            {"name": "Content-Type", "value": "application/json"}
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "model", "value": "gpt-4.1-mini"},
+            {"name": "input", "value": "Summarize this email for a business owner in 3 bullets: {{$json.text}}"}
+          ]
+        }
+      },
+      "id": "summarize_email",
+      "name": "Summarize Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [500, 280]
+    },
+    {
+      "parameters": {
+        "toEmail": "={{$env.BUSINESS_ALERT_EMAIL}}",
+        "subject": "New email summary",
+        "text": "={{$json.output_text || JSON.stringify($json)}}"
+      },
+      "id": "send_summary",
+      "name": "Send Summary",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [800, 280]
+    }
+  ],
+  "connections": {
+    "Email Trigger": {
+      "main": [[{"node": "Summarize Email", "type": "main", "index": 0}]]
+    },
+    "Summarize Email": {
+      "main": [[{"node": "Send Summary", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateNote": "Use user-owned inbox credentials and review the OpenAI request body for your n8n version."
+  }
+}

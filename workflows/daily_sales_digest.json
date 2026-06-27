@@ -1,0 +1,53 @@
+{
+  "name": "Daily Sales Digest",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{"field": "days", "triggerAtHour": 8}]
+        }
+      },
+      "id": "daily_schedule",
+      "name": "Daily Schedule",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [180, 300]
+    },
+    {
+      "parameters": {
+        "documentId": "={{$env.GOOGLE_SHEETS_DOCUMENT_ID}}",
+        "sheetName": "Sales",
+        "operation": "read"
+      },
+      "id": "read_sales_sheet",
+      "name": "Read Sales Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "chatId": "={{$env.TELEGRAM_CHAT_ID}}",
+        "text": "={{'Daily sales rows processed: ' + $items().length}}"
+      },
+      "id": "send_digest",
+      "name": "Send Digest",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [740, 300]
+    }
+  ],
+  "connections": {
+    "Daily Schedule": {
+      "main": [[{"node": "Read Sales Sheet", "type": "main", "index": 0}]]
+    },
+    "Read Sales Sheet": {
+      "main": [[{"node": "Send Digest", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateNote": "Adjust sheet name and summary text to match the business report."
+  }
+}

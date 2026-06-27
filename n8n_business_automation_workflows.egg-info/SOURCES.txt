@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+n8n_business_automation_workflows.egg-info/PKG-INFO
+n8n_business_automation_workflows.egg-info/SOURCES.txt
+n8n_business_automation_workflows.egg-info/dependency_links.txt
+n8n_business_automation_workflows.egg-info/requires.txt
+n8n_business_automation_workflows.egg-info/top_level.txt
+tests/test_workflows.py

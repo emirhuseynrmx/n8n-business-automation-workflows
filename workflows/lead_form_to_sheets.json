@@ -1,0 +1,62 @@
+{
+  "name": "Lead Form to Google Sheets",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "path": "lead-form",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook_lead_form",
+      "name": "Lead Form Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": "={{$env.GOOGLE_SHEETS_DOCUMENT_ID}}",
+        "sheetName": "Leads",
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{$json.name}}",
+            "email": "={{$json.email}}",
+            "message": "={{$json.message}}",
+            "received_at": "={{$now}}"
+          }
+        }
+      },
+      "id": "append_google_sheet",
+      "name": "Append Lead to Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"ok\":true}"
+      },
+      "id": "respond_ok",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [800, 300]
+    }
+  ],
+  "connections": {
+    "Lead Form Webhook": {
+      "main": [[{"node": "Append Lead to Sheet", "type": "main", "index": 0}]]
+    },
+    "Append Lead to Sheet": {
+      "main": [[{"node": "Respond OK", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateNote": "Replace Google credentials and sheet columns before enabling."
+  }
+}
