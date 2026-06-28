@@ -43,6 +43,10 @@ ruff check .
 pytest
 ```
 
+## Sample Delivery Report
+
+![Sample n8n workflow delivery report](docs/assets/sample-n8n-report-preview.png)
+
 ## Scope
 
 These templates are starting points. They avoid account bypassing, credential sharing, and unsafe scraping. Use official APIs and user-owned accounts.
