@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="200" viewBox="0 0 720 200" role="img" aria-label="n8n Business Automation Workflows">
+  <rect width="720" height="200" rx="20" fill="#0d1117"/>
+  <g transform="translate(36 40)"><path d="M30 60 H60 M60 60 L90 30 M60 60 L90 90" fill="none" stroke="#484f58" stroke-width="5" stroke-linecap="round"/>
+<circle cx="26" cy="60" r="16" fill="#f06595"/><circle cx="60" cy="60" r="12" fill="#161b22" stroke="#484f58" stroke-width="3"/>
+<rect x="80" y="16" width="30" height="28" rx="8" fill="#161b22" stroke="#484f58" stroke-width="3"/>
+<rect x="80" y="76" width="30" height="28" rx="8" fill="#161b22" stroke="#f06595" stroke-width="3"/></g>
+  <text x="186" y="84" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="700" fill="#e6edf3" letter-spacing="-0.5">n8n Business</text><text x="186" y="126" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="700" fill="#e6edf3" letter-spacing="-0.5">Automation Workflows</text>
+  <text x="187" y="160" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="18" fill="#8b949e">Tested workflow templates for small businesses</text>
+</svg>

@@ -1,4 +1,9 @@
-# n8n Business Automation Workflows
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.svg">
+    <img src="assets/logo-light.svg" alt="n8n Business Automation Workflows" width="620">
+  </picture>
+</h1>
 
 [![CI](https://github.com/emirhuseynrmx/n8n-business-automation-workflows/actions/workflows/ci.yml/badge.svg)](https://github.com/emirhuseynrmx/n8n-business-automation-workflows/actions)
 
